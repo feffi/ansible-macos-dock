@@ -1,0 +1,42 @@
+---
+macos_dock:
+  # Applications to add/remove to/from the Dock
+  applications:
+    add: []
+      # [
+      #   { name: "Google Chrome", path: "/Applications/Google Chrome.app", pos: 1 },
+      #   { name: "Firefox", path: "/Applications/Firefox.app", pos: 2 }
+      # ]
+    remove: []
+      # [
+      #   "Contacts",
+      #   "Notes",
+      #   "FaceTime",
+      #   "iTunes",
+      #   "iBooks",
+      #   "App Store",
+      #   "Calendar"
+      # ]
+
+  # Folder to add/remove to/from the Dock
+  folder:
+    add: []
+    # [
+    #   { path: "~/Documents", view: "grid", display: "folder" },
+    #   { path: "~/Music", view: "list", display: "stack" }
+    # ]
+    remove: []
+    # [
+    #   "~/Downloads"
+    # ]
+
+  # URLs to add/remove to/from the Dock
+  url:
+    add: []
+    # [
+    #   { url: "vnc://miniserver.local", label: "Mini VNC" }
+    # ]
+    remove: []
+    # [
+    #   "https://google.com"
+    # ]

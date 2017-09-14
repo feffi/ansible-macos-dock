@@ -1,0 +1,3 @@
+---
+- src: https://github.com/feffi/ansible-macos-homebrew.git
+  name: feffi.macos-homebrew

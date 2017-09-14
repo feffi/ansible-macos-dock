@@ -1,0 +1,21 @@
+---
+language: objective-c
+
+cache: pip
+
+os:
+  - osx
+
+osx_image: xcode9
+
+install:
+    - sudo -H easy_install pip
+    - sudo -H pip install -I ansible==2.3.2.0
+    - mkdir -p /tmp/roles
+    - "{ echo '[defaults]'; echo 'roles_path = ../:/tmp/roles'; echo 'hash_behaviour=merge'; } >> ansible.cfg"
+    - ansible-galaxy install -f -r tests/requirements.yml -p /tmp/roles
+
+script:
+  - "ansible-playbook -i tests/inventory tests/travis.yml --syntax-check"
+  - "ansible-playbook -i tests/inventory tests/travis.yml --connection=local"
+  - "ansible-playbook -i tests/inventory tests/travis.yml --connection=local | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
