@@ -34,7 +34,7 @@
           "https://google.com"
         ]
     macos_homebrew:
-      packages: [],
+      packages: []
       casks: [
         { name: "google-chrome" }
         { name: "firefox" }
