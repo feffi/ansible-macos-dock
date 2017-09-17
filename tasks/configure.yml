@@ -33,3 +33,25 @@
   when:
     - item.url
     - item.label
+
+- name: Set macOS defaults
+  include_role:
+    name: feffi.macos-defaults
+  vars:
+    macos_defaults:
+      defaults:
+        - { domain: "com.apple.dock", key: "enable-spring-load-actions-on-all-items", type: "boolean", value: "{{ macos_dock.settings.spring_load }}", description: "Enable spring loading for all Dock items" }
+        - { domain: "com.apple.dock", key: "expose-animation-duration", type: "float", value: "{{ macos_dock.settings.expose_animation_duration }}", description: "Speed up Mission Control animations" }
+        - { domain: "com.apple.dock", key: "expose-group-by-app", type: "boolean", value: "{{ macos_dock.settings.expose_group_by_app }}", description: "Group windows by application in Mission Control (i.e. use the old Exposé behavior instead)" }
+        - { domain: "com.apple.dock", key: "hide-mirror", type: "boolean", value: "{{ macos_dock.settings.transparent }}", description: "Set slightly transparent Dock" }
+        - { domain: "com.apple.dock", key: "minimize-to-application", type: "boolean", value: "{{ macos_dock.settings.minimize_to_application }}", description: "Minimize windows into their application’s icon" }
+        - { domain: "com.apple.dock", key: "mouse-over-hilite-stack", type: "boolean", value: "{{ macos_dock.settings.mouse_over_hilite_stack }}", description: "Enable highlight hover effect for the grid view of a stack (Dock)" }
+        - { domain: "com.apple.dock", key: "mru-spaces", type: "boolean", value: "{{ macos_dock.settings.rearrange_spaces }}", description: "Don’t automatically rearrange Spaces based on most recent use" }
+        - { domain: "com.apple.dock", key: "show-process-indicators", type: "boolean", value: "{{ macos_dock.settings.process_indicators }}", description: "Show indicator lights for open applications in the Dock" }
+        - { domain: "com.apple.dock", key: "showhidden", type: "boolean", value: "{{ macos_dock.settings.show_hidden }}", description: "Don't make Dock icons of hidden applications translucent" }
+        - { domain: "com.apple.dock", key: "tilesize", type: "integer", value: "{{ macos_dock.settings.tile_size }}", description: "Set the icon size of Dock items to 36 pixels" }
+        - { domain: "com.apple.dock", key: "wvous-br-corner", type: "integer", value: "{{ macos_dock.settings.bottom_right_corner }}", description: "Bottom right screen corner" }
+        - { domain: "com.apple.dock", key: "wvous-br-modifier", type: "integer", value: "{{ macos_dock.settings.bottom_right_modifier }}", description: "Bottom right screen corner modifier" }
+        - { domain: "com.apple.dock", key: "wvous-tl-corner", type: "integer", value: "{{ macos_dock.settings.top_left_corner }}", description: "Top left screen corner" }
+        - { domain: "com.apple.dock", key: "wvous-tl-modifier", type: "integer", value: "{{ macos_dock.settings.top_left_modifier }}", description: "Top left screen corner modifier" }
+        - { domain: "com.apple.dock", key: "dashboard-in-overlay", type: "boolean", value: "{{ macos_dock.settings.dashboard_in_overlay }}", description: "Don’t show Dashboard as a Space" }
