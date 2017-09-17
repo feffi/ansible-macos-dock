@@ -52,7 +52,7 @@
     macos_homebrew:
       packages: []
       casks: [
-        { name: "google-chrome" }
+        { name: "google-chrome" },
         { name: "firefox" }
       ]
 
