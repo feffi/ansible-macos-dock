@@ -1,3 +1,5 @@
 ---
 - src: https://github.com/feffi/ansible-macos-homebrew.git
   name: feffi.macos-homebrew
+- src: https://github.com/feffi/ansible-macos-defaults.git
+  name: feffi.macos-defaults

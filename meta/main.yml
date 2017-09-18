@@ -22,3 +22,8 @@ dependencies:
         taps: []
       }
     }
+  - { role: feffi.macos-defaults,
+      macos_defaults: {
+        defaults: []
+      }
+    }
