@@ -11,6 +11,9 @@ galaxy_info:
   galaxy_tags:
     - system
     - osx
+    - macos
+    - menu
+    - dock
     - config
     - ui
 dependencies:
