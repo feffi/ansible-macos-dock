@@ -22,7 +22,9 @@ dependencies:
         packages: [
           { name: "dockutil" }
         ],
-        taps: []
+        taps: [],
+        casks: [],
+        brews: []
       }
     }
   - { role: feffi.macos-defaults,
