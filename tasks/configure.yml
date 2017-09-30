@@ -1,6 +1,6 @@
 ---
 - name: Remove applications from dock
-  shell: "dockutil --remove all"
+  shell: "dockutil --remove all --no-restart"
   ignore_errors: true
 
 #- name: Remove applications from dock
@@ -9,30 +9,30 @@
 #  with_items: "{{ macos_dock.applications.remove }}"
 
 - name: Find or add applications to dock
-  shell: "dockutil --find '{{ item.name }}' || dockutil --add '{{ item.path }}'"
+  shell: "dockutil --find '{{ item.name }}' || dockutil --add '{{ item.path }}' --no-restart"
   with_items: "{{ macos_dock.applications.add }}"
 
 - name: Reorder Applications
-  shell: "dockutil --move '{{ item.name }}' --position {{ item.pos }}"
+  shell: "dockutil --move '{{ item.name }}' --position {{ item.pos }} --no-restart"
   with_items: "{{ macos_dock.applications.add }}"
 
 - name: Remove folder from dock
-  shell: "dockutil --remove '{{ item }}'"
+  shell: "dockutil --remove '{{ item }}' --no-restart"
   with_items: "{{ macos_dock.folder.remove }}"
 
 - name: Add folder to dock
-  shell: "dockutil --add '{{ item.path }}' --view {{ item.view }} --display {{ item.display }}"
+  shell: "dockutil --add '{{ item.path }}' --view {{ item.view }} --display {{ item.display }} --no-restart"
   with_items: "{{ macos_dock.folder.add }}"
   when:
     - item.view in [ "grid", "fan", "list", "auto" ]
     - item.display in [ "folder", "stack" ]
 
 - name: Remove URL from dock
-  shell: "dockutil --remove '{{ item }}'"
+  shell: "dockutil --remove '{{ item }}' --no-restart"
   with_items: "{{ macos_dock.url.remove }}"
 
 - name: Add URL to dock
-  shell: "dockutil --add '{{ item.url }}' --label '{{ item.label }}'"
+  shell: "dockutil --add '{{ item.url }}' --label '{{ item.label }}' --no-restart"
   with_items: "{{ macos_dock.url.add }}"
   when:
     - item.url
