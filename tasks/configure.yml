@@ -59,3 +59,9 @@
         - { domain: "com.apple.dock", key: "wvous-tl-corner", type: "integer", value: "{{ macos_dock.settings.top_left_corner }}", description: "Top left screen corner" }
         - { domain: "com.apple.dock", key: "wvous-tl-modifier", type: "integer", value: "{{ macos_dock.settings.top_left_modifier }}", description: "Top left screen corner modifier" }
         - { domain: "com.apple.dock", key: "dashboard-in-overlay", type: "boolean", value: "{{ macos_dock.settings.dashboard_in_overlay }}", description: "Don’t show Dashboard as a Space" }
+
+- name: Restart Dock
+  shell: "killall Dock"
+  ignore_errors: true
+  failed_when: false
+  changed_when: false
