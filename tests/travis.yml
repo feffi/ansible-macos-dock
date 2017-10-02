@@ -58,5 +58,5 @@
       ]
 
   roles:
-    - { role: ansible-macos-homebrew }
+    - { role: feffi.macos-homebrew }
     - { role: ansible-macos-dock }
