@@ -1,0 +1,62 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  vars:
+    DEBUG: true
+    macos_dock:
+      reset: false
+      applications:
+        add: [
+             { label: "Google Chrome", path: "/Applications/Google Chrome.app", pos: 1 },
+             { label: "Firefox", path: "/Applications/Firefox.app", pos: 2 }
+        ]
+        remove: [
+          "Contacts",
+          "Notes",
+          "FaceTime",
+          "iTunes",
+          "iBooks",
+          "App Store",
+          "Calendar"
+        ]
+      folder:
+        add: [
+          { label: "Documents", path: "~/Documents", view: "grid", display: "folder", pos: 2 },
+          { label: "Music", path: "~/Music", view: "list", display: "stack", pos: 1 }
+        ]
+        remove: [
+          "~/Downloads"
+        ]
+      url:
+        add: [
+          { label: "Mini VNC", url: "vnc://miniserver.local" }
+        ]
+        remove: [
+          "https://google.com"
+        ]
+      settings:
+        spring_load: true
+        expose_animation_duration: 0.12
+        expose_group_by_app: true
+        transparent: true
+        minimize_to_application: true
+        mouse_over_hilite_stack: true
+        rearrange_spaces: false
+        process_indicators: true
+        show_hidden: true
+        tile_size: 36
+        bottom_right_corner: 2
+        bottom_right_modifier: 0
+        top_left_corner: 5
+        top_left_modifier: 0
+        dashboard_in_overlay: true
+    macos_homebrew:
+      packages: []
+      casks: [
+        { name: "google-chrome" },
+        { name: "firefox" }
+      ]
+
+  roles:
+    - { role: feffi.macos-homebrew }
+    - { role: ansible-macos-dock }

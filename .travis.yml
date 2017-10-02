@@ -18,5 +18,4 @@ install:
 script:
   - "ansible-playbook -i tests/inventory tests/travis.yml --syntax-check"
   - "ansible-playbook -i tests/inventory tests/travis.yml --connection=local"
-  - "ansible-playbook -i tests/inventory tests/travis.yml --connection=local"
-  - "ansible-playbook -i tests/inventory tests/travis.yml --connection=local | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
+  - "ansible-playbook -i tests/inventory tests/travis-no-reset.yml --connection=local | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
