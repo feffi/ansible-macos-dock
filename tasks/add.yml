@@ -1,0 +1,43 @@
+---
+- name: Init
+  set_fact:
+    slot_number_index: 8
+  changed_when: false
+
+- name: Determine label spaces
+  shell: "echo '{{ item.label }}' | tr -cd ' ' | wc -c | awk -F' ' '{ print $1 }'"
+  register: name_spaces
+  changed_when: false
+
+- name: Label contains spaces
+  set_fact:
+    slot_number_index: "{{ ( name_spaces.stdout | int ) + 8 }}"
+  when: name_spaces.stdout
+  changed_when: false
+
+- name: "Finding '{{ item.label }}' in dock"
+  shell: "dockutil --find '{{ item.label }}' --no-restart | awk -F' ' '{ print ${{ slot_number_index }} }'"
+  register: macos_dock_index
+  changed_when: false
+
+- name: "Adding '{{ item.label }}' as application to dock"
+  shell: "dockutil --add '{{ item.path }}' --label '{{ item.label }}' --no-restart"
+  when: not macos_dock_index.stdout and (item.view is undefined) and (item.display is undefined) and (item.url is undefined)
+
+- name: "Adding '{{ item.label }}' as folder to dock"
+  shell: "dockutil --add '{{ item.path }}' --label '{{ item.label }}' --view {{ item.view }} --display {{ item.display }} --no-restart"
+  when: not macos_dock_index.stdout and (item.view is defined) and (item.display is defined) and (item.url is undefined)
+  failed_when:
+    - item.view not in [ 'grid', 'fan', 'list', 'auto' ]
+    - item.display not in [ 'folder', 'stack' ]
+
+- name: "Adding '{{ item.label }}' as URL to dock"
+  shell: "dockutil --add '{{ item.url }}' --label '{{ item.label }}' --no-restart"
+  when: "not macos_dock_index.stdout and (item.view is undefined) and (item.display is undefined) and (item.url is defined)"
+  register: url_add
+  failed_when: "url_add.rc != 0 and 'exists in dock' not in url_add.stdout"
+  changed_when: "'exists in dock' not in url_add.stdout"
+
+- name: "Reorder '{{ item.label }}' to from position {{ macos_dock_index.stdout }} to {{ item.pos }}"
+  shell: "dockutil --move '{{ item.label }}' --position {{ item.pos }} --no-restart"
+  when: "(item.pos is defined) and (( macos_dock_index.stdout | int ) != item.pos) and (item.url is undefined)"

@@ -1,0 +1,19 @@
+---
+- name: Remove applications from dock
+  shell: "dockutil --remove '{{ item }}'"
+  ignore_errors: true
+  with_items: "{{ macos_dock.applications.remove }}"
+  when: macos_dock.applications.remove
+  changed_when: false
+
+- name: Remove folder from dock
+  shell: "dockutil --remove '{{ item }}' --no-restart"
+  with_items: "{{ macos_dock.folder.remove }}"
+  when: macos_dock.folder.remove
+  changed_when: false
+
+- name: Remove URL from dock
+  shell: "dockutil --remove '{{ item }}' --no-restart"
+  with_items: "{{ macos_dock.url.remove }}"
+  when: macos_dock.url.remove
+  changed_when: false

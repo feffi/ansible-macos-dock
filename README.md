@@ -23,10 +23,14 @@ All role based variables are listed below, along with default values:
 
 ```yaml
 macos_dock:
+  # Full reset/remove all Applications from Dock
+  reset: true
+
+  # Applications to add/remove to/from the Dock
   applications:
     add: [
-      { name: "Google Chrome", path: "/Applications/Google Chrome.app", pos: 1 },
-      { name: "Firefox", path: "/Applications/Firefox.app", pos: 2 }
+      { label: "Google Chrome", path: "/Applications/Google Chrome.app", pos: 1 },
+      { label: "Firefox", path: "/Applications/Firefox.app", pos: 2 }
     ]
     remove: [
       "Contacts",
@@ -37,21 +41,26 @@ macos_dock:
       "App Store",
       "Calendar"
     ]
+
+  # Folder to add/remove to/from the Dock
   folder:
     add: [
-      { path: "~/Documents", view: "grid", display: "folder" },
-      { path: "~/Music", view: "list", display: "stack" }
+      { label: "Documents", path: "~/Documents", view: "grid", display: "folder", pos: 2 },
+      { label: "Music",  path: "~/Music", view: "list", display: "stack", pos: 1 }
     ]
     remove: [
       "~/Downloads"
     ]
+
+  # URLs to add/remove to/from the Dock
   url:
     add: [
-      { url: "vnc://miniserver.local", label: "Mini VNC" }
+      { label: "Mini VNC", url: "vnc://miniserver.local" }
     ]
     remove: [
       "https://google.com"
     ]
+
   settings:
     # Enable spring loading for all Dock items
     spring_load: true
@@ -94,10 +103,11 @@ None.
     - hosts: all
       vars:
         macos_dock:
+          reset: true
           applications:
             add: [
-              { name: "Google Chrome", path: "/Applications/Google Chrome.app", pos: 1 },
-              { name: "Firefox", path: "/Applications/Firefox.app", pos: 2 }
+              { label: "Google Chrome", path: "/Applications/Google Chrome.app", pos: 1 },
+              { label: "Firefox", path: "/Applications/Firefox.app", pos: 2 }
             ]
             remove: [
               "Contacts",
@@ -110,8 +120,8 @@ None.
             ]
           folder:
             add: [
-              { path: "~/Documents", view: "grid", display: "folder" },
-              { path: "~/Music", view: "list", display: "stack" }
+              { label: "Documents", path: "~/Documents", view: "grid", display: "folder", pos: 2 },
+              { label: "Music", path: "~/Music", view: "list", display: "stack", pos: 1 }
             ]
             remove: [
               "~/Downloads"
@@ -149,10 +159,11 @@ Or with local parameters:
       roles:
         - { role: feffi.macos-dock,
             macos_dock: {
+              reset: true,
               applications: {
                 add: [
-                  { name: "Google Chrome", path: "/Applications/Google Chrome.app", pos: 1 },
-                  { name: "Firefox", path: "/Applications/Firefox.app", pos: 2 }
+                  { label: "Google Chrome", path: "/Applications/Google Chrome.app", pos: 1 },
+                  { label: "Firefox", path: "/Applications/Firefox.app", pos: 2 }
                 ],
                 remove: [
                   "Contacts",
@@ -166,8 +177,8 @@ Or with local parameters:
               },
               folder: {
                 add: [
-                  { path: "~/Documents", view: "grid", display: "folder" },
-                  { path: "~/Music", view: "list", display: "stack" }
+                  { label: "Documents", path: "~/Documents", view: "grid", display: "folder", pos: 2 },
+                  { label: "Music", path: "~/Music", view: "list", display: "stack", pos: 1 }
                 ],
                 remove: [
                   "~/Downloads"
@@ -175,7 +186,7 @@ Or with local parameters:
               },
               url: {
                 add: [
-                  { url: "vnc://miniserver.local", label: "Mini VNC" }
+                  { label: "Mini VNC", url: "vnc://miniserver.local" }
                 ],
                 remove: [
                   "https://google.com"

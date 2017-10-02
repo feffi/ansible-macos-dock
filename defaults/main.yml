@@ -1,5 +1,8 @@
 ---
 macos_dock:
+  # Full reset/remove all Applications from Dock
+  reset: true
+
   # Applications to add/remove to/from the Dock
   applications:
     add: []
@@ -22,8 +25,8 @@ macos_dock:
   folder:
     add: []
     # [
-    #   { path: "~/Documents", view: "grid", display: "folder" },
-    #   { path: "~/Music", view: "list", display: "stack" }
+    #   { label: "Documents", path: "~/Documents", view: "grid", display: "folder", pos: 1 },
+    #   { label: "Music", path: "~/Music", view: "list", display: "stack", pos: 2 }
     # ]
     remove: []
     # [

@@ -3,4 +3,28 @@
     msg: "{{ vars[(role_path | basename).split('.')[-1].replace('-','_').replace('ansible_','')] }}"
   when: DEBUG | d() | bool
 
+- include_tasks: reset.yml
+  when: macos_dock.reset
+
+- include_tasks: remove.yml
+
+- include_tasks: add.yml
+  with_items: "{{ macos_dock.applications.add }}"
+  when: macos_dock.applications.add
+
+- include_tasks: add.yml
+  with_items: "{{ macos_dock.folder.add }}"
+  when: macos_dock.folder.add
+
+- include_tasks: add.yml
+  with_items: "{{ macos_dock.url.add }}"
+  when: macos_dock.url.add
+
 - include_tasks: configure.yml
+
+- name: Restart Dock
+  shell: "killall Dock"
+  ignore_errors: true
+  failed_when: false
+  changed_when: false
+
