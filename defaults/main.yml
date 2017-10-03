@@ -74,3 +74,5 @@ macos_dock:
     top_left_modifier: 0
     # Don’t show Dashboard as a Space
     dashboard_in_overlay: true
+    # Set Dock magnification
+    magnification: true

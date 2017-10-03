@@ -50,6 +50,7 @@
         top_left_corner: 5
         top_left_modifier: 0
         dashboard_in_overlay: true
+        magnification: true
     macos_homebrew:
       packages: []
       casks: [

@@ -92,6 +92,8 @@ macos_dock:
     top_left_modifier: 0
     # Don’t show Dashboard as a Space
     dashboard_in_overlay: true
+    # Set Dock magnification
+    magnification: true
 ```
 
 ## Dependencies
@@ -149,6 +151,7 @@ None.
             top_left_corner: 5
             top_left_modifier: 0
             dashboard_in_overlay: true
+            magnification: true
       roles:
         - { role: feffi.macos-dock }
 ```
@@ -207,7 +210,8 @@ Or with local parameters:
                 bottom_right_modifier: 0,
                 top_left_corner: 5,
                 top_left_modifier: 0,
-                dashboard_in_overlay: true
+                dashboard_in_overlay: true,
+                magnification: true
               }
             }
           }

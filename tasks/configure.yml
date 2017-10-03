@@ -20,3 +20,6 @@
         - { domain: "com.apple.dock", key: "wvous-tl-corner", type: "integer", value: "{{ macos_dock.settings.top_left_corner }}", description: "Top left screen corner" }
         - { domain: "com.apple.dock", key: "wvous-tl-modifier", type: "integer", value: "{{ macos_dock.settings.top_left_modifier }}", description: "Top left screen corner modifier" }
         - { domain: "com.apple.dock", key: "dashboard-in-overlay", type: "boolean", value: "{{ macos_dock.settings.dashboard_in_overlay }}", description: "Don’t show Dashboard as a Space" }
+        - { domain: "com.apple.dock", key: "magnification", type: "boolean", value: "{{ macos_dock.settings.magnification }}", description: "Set Dock magnification" }
+
+
